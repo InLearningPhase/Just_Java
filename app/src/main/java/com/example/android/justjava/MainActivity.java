@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     public int quantity = 0;
     public int price = 10;
+    public int total = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        displayQuantity(quantity);
-        displayPrice(quantity * price);
+        total = quantity * price;
+        String message = "Total: $" + total;
+        displayMessage(message + "\nThank You");
+
     }
 
     /**
