@@ -12,13 +12,16 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     public int quantity = 0;
-    public int price = 10;
     public int total = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    private int calculatePrice() {
+        return quantity * 5;
     }
 
     public void increment(View view) {
@@ -35,10 +38,16 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        total = quantity * price;
-        String message = "Total: $" + total;
-        displayMessage(message + "\nThank You");
+        int price = calculatePrice();
+        displayMessage(createOrderSummary(price));
 
+    }
+
+    private String createOrderSummary(int price) {
+        String message = "Name:Spoider mon" + "\nQuantity: " + quantity;
+        message = message + "\nPrice: $" + price;
+        message = message + "\nThank You!";
+        return message;
     }
 
     /**
@@ -49,13 +58,8 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
-
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
         priceTextView.setText(message);
     }
 
