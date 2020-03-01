@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import java.text.NumberFormat;
 
@@ -47,19 +48,25 @@ public class MainActivity extends AppCompatActivity {
         return hasChocolate.isChecked();
     }
 
+    public String enterName() {
+        EditText userInput = (EditText) findViewById(R.id.name_view);
+        return userInput.getText().toString();
+    }
+
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        String userName = enterName();
         boolean hasWhippedCream = whippedCreamCheckBox();
         boolean hasChocolate = chocolateCheckBox();
         int price = calculatePrice();
-        displayMessage(createOrderSummary(price, hasWhippedCream, hasChocolate));
+        displayMessage(createOrderSummary(price, hasWhippedCream, hasChocolate, userName));
 
     }
 
-    private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate) {
-        String message = "Name:Spoider mon";
+    private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate, String userName) {
+        String message = "Name: " + userName;
         message = message + "\nAdd Whipped Cream: " + hasWhippedCream;
         message = message + "\nAdd Chocolate: " + hasChocolate;
         message = message + "\nQuantity: " + quantity;
