@@ -37,26 +37,31 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(quantity);
     }
 
-    public boolean checkButton(){
-        CheckBox hasWhippedCream = (CheckBox) findViewById(R.id.checkbox_view);
+    public boolean whippedCreamCheckBox(){
+        CheckBox hasWhippedCream = (CheckBox) findViewById(R.id.whippedcream_checkbox);
         return hasWhippedCream.isChecked();
+    }
+
+    public boolean chocolateCheckBox() {
+        CheckBox hasChocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        return hasChocolate.isChecked();
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        boolean hasWhippedCream = checkButton();
-        if (hasWhippedCream) { pricePerCup = 10; }
-        else { pricePerCup = 5; }
+        boolean hasWhippedCream = whippedCreamCheckBox();
+        boolean hasChocolate = chocolateCheckBox();
         int price = calculatePrice();
-        displayMessage(createOrderSummary(price, hasWhippedCream));
+        displayMessage(createOrderSummary(price, hasWhippedCream, hasChocolate));
 
     }
 
-    private String createOrderSummary(int price, boolean hasWhippedCream) {
+    private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate) {
         String message = "Name:Spoider mon";
         message = message + "\nAdd Whipped Cream: " + hasWhippedCream;
+        message = message + "\nAdd Chocolate: " + hasChocolate;
         message = message + "\nQuantity: " + quantity;
         message = message + "\nPrice: $" + price;
         message = message + "\nThank You!";
