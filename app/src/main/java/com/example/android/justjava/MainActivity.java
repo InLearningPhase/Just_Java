@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     public int quantity = 0;
     public int totalPrice = 0;
-    public int pricePerCup = 5;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    private int calculatePrice() {
-        totalPrice = quantity * pricePerCup;
+    private int calculatePrice(boolean hasWhippedCream, boolean hasChocolate) {
+
+        int pricePerCup = 5;
+
+        if (hasWhippedCream) {
+            pricePerCup += 1;
+        }
+
+        if (hasChocolate) {
+            pricePerCup += 2;
+        }
+
+        totalPrice = pricePerCup * quantity;
         return totalPrice;
     }
 
@@ -60,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         String userName = enterName();
         boolean hasWhippedCream = whippedCreamCheckBox();
         boolean hasChocolate = chocolateCheckBox();
-        int price = calculatePrice();
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
         displayMessage(createOrderSummary(price, hasWhippedCream, hasChocolate, userName));
 
     }
