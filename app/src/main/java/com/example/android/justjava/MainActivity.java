@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateCheckBox();
         int price = calculatePrice(hasWhippedCream, hasChocolate);
         displayMessage(createOrderSummary(price, hasWhippedCream, hasChocolate, userName));
+        Toast.makeText(this, "Thank You for Ordering!!", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -92,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         message = message + "\nAdd Chocolate: " + hasChocolate;
         message = message + "\nQuantity: " + quantity;
         message = message + "\nPrice: $" + price;
-        message = message + "\nThank You!";
         return message;
     }
 
