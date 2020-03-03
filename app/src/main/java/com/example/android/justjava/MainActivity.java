@@ -92,12 +92,12 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
-        Toast.makeText(this, "Thank You for Ordering!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.thank_you), Toast.LENGTH_SHORT).show();
 
     }
 
     private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate, String userName) {
-        String message = "Name: " + userName;
+        String message = getString(R.string.order_summary_name,userName);
         message = message + "\nAdd Whipped Cream: " + hasWhippedCream;
         message = message + "\nAdd Chocolate: " + hasChocolate;
         message = message + "\nQuantity: " + quantity;
